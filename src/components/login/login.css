@@ -1,9 +1,6 @@
 /* Garantir que o container da página de login ocupe a tela inteira sem rolagem */
 body.login-page {
-    background-image: url("../../assets/bg.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: black;
     margin: 0; /* Remove margens do body para evitar espaço em branco */
     height: 100vh; /* Ocupa a altura total da viewport */
     overflow: hidden; /* Remove qualquer rolagem */

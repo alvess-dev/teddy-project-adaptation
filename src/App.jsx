@@ -5,7 +5,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import Cookies from 'js-cookie';
 import { Menubar } from 'primereact/menubar';
-import LogoTeddy from "./assets/logo-teddy.png";
+// import LogoCreAite from "./assets/logo-creaite.png";
 import './App.css';
 
 import ListarClothes from "./components/clothes/listar-clothes";
@@ -67,8 +67,8 @@ function App() {
   ];
 
   const start = (
-    <Link to="/ListarClothes">
-      <img alt="logo" src={LogoTeddy} height="40" className="mr-2" />
+    <Link to="/ListarClothes" style={{ textDecoration: 'none'}}>
+      <h1 style={{ color: '#fffcfc', padding: '10px', marginRight: '1em', marginLeft: '1em' }}>CreAite</h1>
     </Link>
   );
 
