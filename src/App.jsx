@@ -8,8 +8,8 @@ import { Menubar } from 'primereact/menubar';
 import LogoTeddy from "./assets/logo-teddy.png";
 import './App.css';
 
-import ListarParceiros from "./components/parceiros/listar-parceiros.component";
-import ListarEmpresasExternas from "./components/empresas-externas/listar-empresas-externas";
+import ListarClothes from "./components/clothes/listar-clothes";
+import ListarUsers from "./components/users/listar-users";
 import Sobre from "./components/sobre/sobre";
 import Login from "./components/login/login";
 
@@ -49,12 +49,12 @@ function App() {
 
   const items = [
     {
-      label: 'Parceiros',
-      url: '/ListarParceiros'
+      label: 'Clothes',
+      url: '/ListarClothes'
     },
     {
-      label: 'Empresas Externas',
-      url: '/ListarEmpresasExternas'
+      label: 'Users',
+      url: '/ListarUsers'
     },
     {
       label: 'Sobre',
@@ -67,7 +67,7 @@ function App() {
   ];
 
   const start = (
-    <Link to="/ListarParceiros">
+    <Link to="/ListarClothes">
       <img alt="logo" src={LogoTeddy} height="40" className="mr-2" />
     </Link>
   );
@@ -86,8 +86,8 @@ function App() {
       <div className="container mt-3">
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/ListarParceiros" element={<ListarParceiros />} />
-          <Route path="/ListarEmpresasExternas" element={<ListarEmpresasExternas />} />
+          <Route path="/ListarClothes" element={<ListarClothes />} />
+          <Route path="/ListarUsers" element={<ListarUsers />} />
           <Route path="/Sobre" element={<Sobre />} />
         </Routes>
       </div>

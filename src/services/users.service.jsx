@@ -1,27 +1,27 @@
 import http from "../http-common";
 
-const url = "https://644060ba792fe886a88de1b9.mockapi.io/v1/test/partners";
+const url = "https://jsonplaceholder.typicode.com/users";
 
-class ParceirosService {
-  getParceiros() {
+class usersService {
+  getUsers() {
     return Promise.resolve(http.get(url));
   }
 
-  getParceiroById(id) {
+  getUserById(id) {
     return Promise.resolve(http.get(`${url}/${id}`));
   }
 
-  postParceiro(data) {
+  postUser(data) {
     return Promise.resolve(http.post(`${url}`, data));
   }
 
-  putParceiro(id, data) {
+  putUser(id, data) {
     return Promise.resolve(http.put(`${url}/${id}`, data));
   }
 
-  deleteParceiroById(id) {
+  deleteUserById(id) {
     return Promise.resolve(http.delete(`${url}/${id}`));
   }
 }
 
-export default new ParceirosService();
+export default new usersService();

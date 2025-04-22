@@ -29,7 +29,7 @@ export default function Login() {
         } else {
             localStorage.setItem('username', username);
         }
-        navigate('/ListarParceiros'); // Redireciona para a página inicial
+        navigate('/ListarClothes'); // Redireciona para a página inicial
         window.location.reload(); // Força o recarregamento da página para garantir que o estado do username seja atualizado
     };
 
