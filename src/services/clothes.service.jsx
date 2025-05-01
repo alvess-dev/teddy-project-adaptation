@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-const url = "https://fakestoreapi.com/products/category/women%27s%20clothing";
+const url = "http://localhost:3000/clothes";
 
 class clothesServices {
   getClothes() {

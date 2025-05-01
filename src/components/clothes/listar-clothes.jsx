@@ -67,8 +67,9 @@ export default function ListarClothes() {
     };
 
     const imageTemplate = (rowData) => {
-        return <img src={rowData.image} alt="Foto do Produto" style={{ width: '7rem'}} />;
+        return <img src={`http://localhost:3000${rowData.image_path}`} alt="Foto do Produto" style={{ width: '7rem' }} />;
     };
+    
 
     return (
         <div>
@@ -87,10 +88,12 @@ export default function ListarClothes() {
                     rowsPerPageOptions={[5, 10, 25]}
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                     currentPageReportTemplate="{first} ao {last} de {totalRecords} Roupas">
-                    <Column field="title" header="Nome do Produto" sortable style={{ minWidth: '16rem' }}></Column>
-                    <Column field="category" header="Categoria" sortable style={{ minWidth: '10rem' }}></Column>
-                    <Column field="price" header="Preço" sortable style={{ minWidth: '10rem' }} body={priceTemplate}></Column>
-                    <Column field="image" header="Foto" sortable style={{ minWidth: '10rem' }} body={imageTemplate}></Column>
+                    <Column field="item_name" header="Nome do Produto" sortable style={{ minWidth: '16rem' }} />
+                    <Column field="category" header="Categoria" sortable style={{ minWidth: '10rem' }} />
+                    <Column field="color" header="Cor" sortable style={{ minWidth: '10rem' }} />
+                    <Column field="size" header="Tamanho" sortable style={{ minWidth: '8rem' }} />
+                    <Column field="image_path" header="Foto" body={imageTemplate} style={{ minWidth: '10rem' }} />
+                    <Column field="added_date" header="Data de Adição" sortable style={{ minWidth: '14rem' }} />
                 </DataTable>
             </div>
         </div>
