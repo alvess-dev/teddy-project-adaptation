@@ -9,40 +9,30 @@
 }
 
 .p-menuitem-link:hover {
-    background-color: #EB6625;
-    border-color: #EB6625;
+    background-color: #380d7e;
+    border: none;
     color: white;
 }
 
 .p-button-success,
 .btn-entrar, .btn-orange {
-    background-color: #EB6625;
-    border-color: #EB6625;
+    background-color: #151515;
+    border: none;
     color: white;
+    transition: 120ms ease;
 }
 
 .p-button-success:hover,
 .btn-entrar:hover, .btn-orange:hover {
-    background-color: orangered;
-    border-color: orangered;
-}
-
-.btn-red-not-bg {
-    background-color: transparent;
-    border-color: red;
-    color: red;
+    background-color: #380d7e;
+    transform: scale(1.05);
+    border: none;
 }
 
 .btn-orange-not-bg {
     background-color: transparent;
-    border-color: #EB6625;
-    color: #EB6625;
-}
-
-.btn-blue-not-bg {
-    background-color: transparent;
-    border-color: #0A66C2;
-    color: #0A66C2;
+    border: none;
+    color: #380d7e;
 }
 
 .linkedin-button {
@@ -56,16 +46,26 @@
   }
   
 
-.p-button-danger {
-    background-color: red;
-    border-color: red;
-    color: white;
+  .p-button-danger {
+      background-color: red;
+      border-color: red;
+      color: white;
+      transition: 120ms ease;
+}
+
+.p-button-danger:hover {
+    transform: scale(1.05);
 }
 
 .p-button-warning {
-    background-color: orange;
-    border-color: orange;
+    background-color: #6b40b1;
+    border: none;
     color: white;
+    transition: 120ms ease;
+}
+
+.p-button-warning:hover {
+    transform: scale(1.05);
 }
 
 .header-container {
