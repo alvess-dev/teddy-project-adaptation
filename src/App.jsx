@@ -12,6 +12,8 @@ import ListarClothes from "./components/clothes/listar-clothes";
 import ListarUsers from "./components/users/listar-users";
 import Sobre from "./components/sobre/sobre";
 import Login from "./components/login/login";
+import Register from './components/register/register';
+
 
 function App() {
   const location = useLocation();
@@ -41,11 +43,14 @@ function App() {
   }, [navigate]);
 
   const handleLogout = () => {
-    Cookies.remove('username');
-    localStorage.removeItem('username');
+    Cookies.remove('token');
+    Cookies.remove('user_id');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_id');
     setUsername(''); // Limpa o estado do username
     navigate('/'); // Redireciona para a página de login
-  };
+};
+
 
   const items = [
     {
@@ -86,6 +91,7 @@ function App() {
       <div className="container mt-3">
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/ListarClothes" element={<ListarClothes />} />
           <Route path="/ListarUsers" element={<ListarUsers />} />
           <Route path="/Sobre" element={<Sobre />} />

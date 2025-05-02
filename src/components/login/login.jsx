@@ -14,25 +14,45 @@ export default function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Adiciona a classe `login-page` ao <body> quando o componente é montado
         document.body.classList.add('login-page');
-
-        // Remove a classe `login-page` ao <body> quando o componente é desmontado
         return () => {
             document.body.classList.remove('login-page');
         };
     }, []);
 
-    const handleLogin = () => {
-        if (rememberMe) {
-            Cookies.set('username', username, { expires: 7 }); // Cookie expira em 7 dias
-        } else {
-            localStorage.setItem('username', username);
-        }
-        navigate('/ListarClothes'); // Redireciona para a página inicial
-        window.location.reload(); // Força o recarregamento da página para garantir que o estado do username seja atualizado
-    };
+    const handleLogin = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: username, password: password })
+            });
 
+            const data = await response.json();
+
+            if (data.token) {
+                // Armazena o token JWT e o id_user
+                if (rememberMe) {
+                    Cookies.set('token', data.token, { expires: 7 });
+                    Cookies.set('user_id', data.user.id_user, { expires: 7 });
+                } else {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user_id', data.user.id_user);
+                }
+
+                navigate('/ListarClothes');
+                window.location.reload();
+            } else {
+                alert("Email ou senha inválidos!");
+            }
+        } catch (error) {
+            console.error("Erro no login:", error);
+            alert("Erro ao tentar logar. Tente novamente.");
+        }
+    };
+    
     return (
         <div className="login-page" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <Card title="Login" style={{ width: '300px' }}>
@@ -50,6 +70,7 @@ export default function Login() {
                         <label htmlFor="rememberMe">Manter Conectado</label>
                     </div>
                     <Button label="Entrar" onClick={handleLogin} className="btn-entrar p-mt-3" />
+                    <Button label="Criar Conta" className="p-button-secondary p-mt-2" onClick={() => navigate('/register')} />
                 </div>
             </Card>
         </div>

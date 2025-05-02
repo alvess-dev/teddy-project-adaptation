@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import ClothesService from "../../services/clothes.service";  // Renomeei o serviço para ClothesService
+import ClothesService from "../../services/clothes.service";
 import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -10,7 +10,6 @@ export default function ListarClothes() {
     let emptyClothes = {
         name: "",
         category: "",
-        price: "",
     };
 
     const [clothes, setClothes] = useState(null);
@@ -23,12 +22,12 @@ export default function ListarClothes() {
     const location = useLocation();
 
     const getClothes = () => {
-        ClothesService.getClothes().then((data) => setClothes(data.data));  // Alterei para usar ClothesService
+        ClothesService.getClothes().then((data) => setClothes(data.data));
     };
 
     const updateURLWithPage = (page, rows) => {
         const params = new URLSearchParams(location.search);
-        params.set('page', page + 1); // page começa em 0, então adicionamos 1 para a URL
+        params.set('page', page + 1);
         params.set('rows', rows);
         navigate({ search: params.toString() });
     };
@@ -41,10 +40,10 @@ export default function ListarClothes() {
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
-        const pageFromURL = parseInt(params.get('page'), 10) || 1; // Padrão é 1 se não houver parâmetro
+        const pageFromURL = parseInt(params.get('page'), 10) || 1;
         const rowsFromURL = parseInt(params.get('rows'), 10) || 10;
 
-        setCurrentPage(pageFromURL - 1); // pageFromURL começa em 1 na URL, mas em 0 na tabela
+        setCurrentPage(pageFromURL - 1);
         setRowsPerPage(rowsFromURL);
         getClothes();
     }, [location.search]);
