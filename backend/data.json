@@ -1,0 +1,112 @@
+[
+  {
+    "database": "wardrobe",
+    "tables": {
+      "users": [
+        {
+          "id_user": 1,
+          "nickname": "",
+          "email": "luis@gmail.com",
+          "password": "$2b$10$1XXneTr/HvkT1v5HyyYL.urIL/SlgE1xPWyF8Kuu5ZpFKOfADw0Im",
+          "language": "portuguese",
+          "country": "Brazil",
+          "registration_date": "2025-05-02 02:03:32",
+          "profile_picture": "/images/users/default.png"
+        },
+        {
+          "id_user": 2,
+          "nickname": "john_doe",
+          "email": "john@example.com",
+          "password": "$2b$10$1JVjnG9MwrrHmuPPrXXxxO.IhRslFLj/CdyRZ457rLDX3AIieYiN6",
+          "language": "Portuguese",
+          "country": "Brazil",
+          "registration_date": "2025-05-05",
+          "profile_picture": "/images/users/default.png"
+        },
+        {
+          "id_user": 3,
+          "nickname": "john_doe",
+          "email": "john.deeeeoe@example.com",
+          "password": "$2b$10$bCmpw0P2B29kKGNtsy//aOig7wZWFhAB6NlsKJJ0LIZQ7pjbNdbOy",
+          "language": "pt-BR",
+          "country": "Brasil",
+          "registration_date": "2025-05-06",
+          "profile_picture": "/images/users/default.png"
+        },
+        {
+          "id_user": 4,
+          "nickname": "Alves",
+          "email": "luisssss@gmail.com",
+          "password": "$2b$10$NnA3HkkFwp.zjHc/oVet2uYRVizXDRHjLjzH/1VKRFzsd8kQyvb5q",
+          "language": "portuguese",
+          "country": "Brazil",
+          "registration_date": "2025-05-02 02:13:03",
+          "profile_picture": "/images/users/default.png"
+        },
+        {
+          "id_user": 5,
+          "nickname": "AAAAAA",
+          "email": "lusssis@gmail.com",
+          "password": "$2b$10$oVclLsXPr.JiwdYh3igt.uy7SI5tkx.QHPkQZK4zAI6VXQJF59uT2",
+          "language": "portuguese",
+          "country": "Brazil",
+          "registration_date": "2025-05-02 02:15:13",
+          "profile_picture": "/images/users/default.png"
+        }
+      ],
+      "clothes": [
+        {
+          "id_cloth": 1,
+          "id_user": 1,
+          "item_name": "Black T-Shirt",
+          "category": "tshirt",
+          "color": "black",
+          "size": "M",
+          "image_path": "/images/clothes/blackTShirt.png",
+          "added_date": "2025-04-01 11:00:00"
+        },
+        {
+          "id_cloth": 2,
+          "id_user": 2,
+          "item_name": "Flamengo jersey",
+          "category": "tshirt",
+          "color": "red and black",
+          "size": "G",
+          "image_path": "/images/clothes/flamengoJersey.png",
+          "added_date": "2025-04-02 09:10:00"
+        }
+      ],
+      "posts": [
+        {
+          "id_post": 1,
+          "id_user": 1,
+          "caption": "Loving my new black tee!",
+          "category": "tshirt",
+          "color": "black",
+          "size": "M",
+          "image_url": "/images/posts/post1.jpg",
+          "post_date": "2025-04-01 11:15:00"
+        },
+        {
+          "id_post": 2,
+          "id_user": 2,
+          "caption": "New jeans for autumn 🍂",
+          "category": "pants",
+          "color": "blue",
+          "size": "L",
+          "image_url": "/images/posts/post2.jpg",
+          "post_date": "2025-04-02 09:30:00"
+        }
+      ],
+      "friends": [
+        {
+          "id_friendship": 1,
+          "id_user": 1,
+          "id_friend": 2,
+          "request_date": "2025-04-03 14:00:00",
+          "status": "accepted"
+        }
+      ]
+    }
+  }
+]
