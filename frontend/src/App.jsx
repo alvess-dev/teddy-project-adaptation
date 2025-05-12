@@ -5,96 +5,93 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import Cookies from 'js-cookie';
 import { Menubar } from 'primereact/menubar';
-// import LogoCreAite from "./assets/logo-creaite.png";
 import './App.css';
 
+import PrivateRoute from './components/auth/PrivateRoute';
 import ListarClothes from "./components/clothes/listar-clothes";
 import ListarUsers from "./components/users/listar-users";
 import Sobre from "./components/sobre/sobre";
 import Login from "./components/login/login";
 import Register from './components/register/register';
 
-
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
-  const [greeting, setGreeting] = useState('');
-
-  // Função para determinar a saudação
-  function getGreeting() {
-    const now = new Date();
-    const hour = now.getHours();
-
-    if (hour < 12) {
-      return 'Bom dia';
-    } else if (hour < 18) {
-      return 'Boa tarde';
-    } else {
-      return 'Boa noite';
-    }
-  }
 
   useEffect(() => {
-    // Tenta obter o nome de usuário do cookie
+    const token = Cookies.get('token');
+    if (!token && location.pathname !== '/' && location.pathname !== '/register') {
+      navigate('/');
+    }
+
     const user = Cookies.get('username');
-    user && setUsername(user);
-    setGreeting(getGreeting());
-  }, [navigate]);
+    if (user) {
+      setUsername(user);
+    }
+  }, [location, navigate]);
 
   const handleLogout = () => {
-    Cookies.remove('token');
-    Cookies.remove('user_id');
-    localStorage.removeItem('token');
-    localStorage.removeItem('user_id');
-    setUsername(''); // Limpa o estado do username
-    navigate('/'); // Redireciona para a página de login
-};
-
+    Cookies.remove('token', { path: '/' });
+    Cookies.remove('user_id', { path: '/' });
+    Cookies.remove('username', { path: '/' });
+    setUsername('');
+    navigate('/');
+  };
 
   const items = [
-    {
-      label: 'Clothes',
-      url: '/ListarClothes'
-    },
-    {
-      label: 'Users',
-      url: '/ListarUsers'
-    },
-    {
-      label: 'Sobre',
-      url: '/Sobre'
-    },
-    {
-      label: 'Sair',
-      command: handleLogout // Adiciona a função de logout ao clicar em "Sair"
-    }
+    { label: 'Clothes', url: '/ListarClothes' },
+    { label: 'Users',   url: '/ListarUsers'   },
+    { label: 'Sobre',   url: '/Sobre'         },
+    { label: 'Sair',    command: handleLogout  }
   ];
 
   const start = (
-    <Link to="/ListarClothes" style={{ textDecoration: 'none'}}>
-      <h1 style={{ color: '#fffcfc', padding: '10px', marginRight: '1em', marginLeft: '1em' }}>CreAite</h1>
+    <Link to="/ListarClothes" style={{ textDecoration: 'none' }}>
+      <h1 className="titulo">CreAite</h1>
     </Link>
   );
 
   const end = (
-    <div className="welcome flex align-items-center gap-2">
-      <span className="mx-2">{username ? `${greeting}, ${username}` : ''}</span>
+    <div className="welcome">
+      {username && <span>{username}</span>}
     </div>
   );
 
   return (
     <div className="card">
-      {location.pathname !== '/' && (
+      {['/ListarClothes','/ListarUsers','/Sobre'].includes(location.pathname) && (
         <Menubar model={items} start={start} end={end} className="custom-menubar" />
       )}
       <div className="container mt-3">
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/ListarClothes" element={<ListarClothes />} />
-          <Route path="/ListarUsers" element={<ListarUsers />} />
-          <Route path="/Sobre" element={<Sobre />} />
+
+          <Route
+            path="/ListarClothes"
+            element={
+              <PrivateRoute>
+                <ListarClothes />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/ListarUsers"
+            element={
+              <PrivateRoute>
+                <ListarUsers />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/Sobre"
+            element={
+              <PrivateRoute>
+                <Sobre />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
     </div>

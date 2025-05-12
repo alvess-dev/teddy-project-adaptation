@@ -1,0 +1,6 @@
+body.register-page {
+    background-color: black;
+    margin: 0;
+    height: 100vh; 
+    overflow: hidden;
+}

@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import "./register.css";
 
 export default function Register() {
     const [nickname, setNickname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+            document.body.classList.add('register-page');
+            return () => {
+                document.body.classList.remove('register-page');
+            };
+        }, []);
 
     const handleRegister = async () => {
         if (!nickname || !email || !password) {
@@ -27,20 +35,20 @@ export default function Register() {
                 registration_date: new Date().toISOString().slice(0, 19).replace('T', ' ')
             };
 
+            // envia pro back
             const response = await axios.post('http://localhost:3000/users', newUser, {
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json', // transforma em json
                 },
             });
 
-            console.log('Resposta do servidor:', response);
             alert("Usuário cadastrado com sucesso!");
             navigate('/');
         } catch (err) {
-            console.error('Erro ao cadastrar:', err.response ? err.response.data.message : err.message);
+            console.error('Erro ao cadastrar:', err.response /*status do erro*/ ? err.response.data.message /*msg do back*/ : err.message /*msg generica*/);
 
             if (err.response && err.response.status === 400) {
-                alert(err.response.data.message); // Exibe a mensagem de erro enviada pelo servidor
+                alert(err.response.data.message); // erro exibido pelo server
             } else {
                 alert("Erro ao cadastrar usuário.");
             }
@@ -48,7 +56,7 @@ export default function Register() {
     };
 
     return (
-        <div className="login-page" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <div className="register-page" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <Card title="Cadastro" style={{ width: '300px' }}>
                 <div className="p-fluid">
                     <div className="field">

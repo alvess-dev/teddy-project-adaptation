@@ -8,12 +8,17 @@ import Cookies from 'js-cookie';
 import "./login.css";
 
 export default function Login() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
-
+    
     useEffect(() => {
+        const token = Cookies.get('token');
+        if (token) {
+            navigate('/ListarClothes');
+        }   
+
         document.body.classList.add('login-page');
         return () => {
             document.body.classList.remove('login-page');
@@ -21,29 +26,30 @@ export default function Login() {
     }, []);
 
     const handleLogin = async () => {
+
+        if (!email || !password) {
+            alert("Preencha todos os campos.");
+            return;
+        }
+
         try {
             const response = await fetch("http://localhost:3000/login", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email: username, password: password })
+                body: JSON.stringify({ email: email, password: password })
             });
 
             const data = await response.json();
 
             if (data.token) {
-                // Armazena o token JWT e o id_user
-                if (rememberMe) {
-                    Cookies.set('token', data.token, { expires: 7 });
-                    Cookies.set('user_id', data.user.id_user, { expires: 7 });
-                } else {
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('user_id', data.user.id_user);
-                }
+                const cookieOptions = rememberMe ? { expires: 7, path: '/' } : { path: '/' };
+                
+                Cookies.set('token', data.token, cookieOptions);
+                Cookies.set('user_id', data.user.id_user, cookieOptions);
 
                 navigate('/ListarClothes');
-                window.location.reload();
             } else {
                 alert("Email ou senha inválidos!");
             }
@@ -52,18 +58,18 @@ export default function Login() {
             alert("Erro ao tentar logar. Tente novamente.");
         }
     };
-    
+
     return (
         <div className="login-page" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <Card title="Login" style={{ width: '300px' }}>
                 <div className="p-fluid">
                     <div className="field">
-                        <label htmlFor="username">Usuário</label>
-                        <InputText id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <label htmlFor="email">Usuário</label>
+                        <InputText id="email" autoComplete="off" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className="field">
                         <label htmlFor="password">Senha</label>
-                        <InputText id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <InputText id="password" autoComplete="off" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <div className="field-checkbox">
                         <Checkbox inputId="rememberMe" checked={rememberMe} onChange={(e) => setRememberMe(e.checked)} />
