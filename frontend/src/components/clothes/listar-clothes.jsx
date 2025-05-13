@@ -19,10 +19,16 @@ export default function ListarClothes() {
     ];
 
     const categoryOptions = [
+        { label: 'Camisa', value: 'shirt' },
         { label: 'Camiseta', value: 'tshirt' },
+        { label: 'Bermuda', value: 'bermuda' },
+        { label: 'Shorts', value: 'shorts' },
+        { label: 'Casaco', value: 'coat' },
         { label: 'Calça', value: 'pants' },
         { label: 'Boné', value: 'cap' },
+        { label: 'Chapéu', value: 'hat' },
         { label: 'Relógio', value: 'watch' },
+        { label: 'Acessórios', value: 'acessories' },
         { label: 'Jaqueta', value: 'jacket' }
     ];
 

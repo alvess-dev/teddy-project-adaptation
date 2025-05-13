@@ -4,14 +4,13 @@
     "tables": {
       "users": [
         {
-          "id_user": 6,
-          "nickname": "AAAAAA",
-          "email": "luiss@gmail.com",
-          "password": "$2b$10$BYnK.vjgZv6.4W2GE3j3d.djRA8xQAICWaVJM8QA1yJqwrjW0JlHK",
+          "id_user": 2,
+          "nickname": "Alves",
+          "email": "luis.rodrigues.dev@gmail.com",
+          "password": "$2b$10$nDO3MZ4XdFLuP3V2q2JL.uM1JMtzNHb4pjOJ37S4k0vcbSrNcejXG",
           "language": "portuguese",
           "country": "Brazil",
-          "registration_date": "2025-05-11 06:04:20",
-          "profile_picture": "/images/users/default.png"
+          "registration_date": "2025-05-13 11:08:19"
         }
       ],
       "clothes": [
@@ -20,10 +19,20 @@
           "id_user": 1,
           "item_name": "Black T-Shirt",
           "category": "tshirt",
-          "color": "black",
-          "size": "P",
+          "color": "Black",
+          "size": "M",
           "image_path": "/images/clothes/blackTShirt.png",
           "added_date": "2025-04-01 11:00:00"
+        },
+        {
+          "id_cloth": 2,
+          "id_user": 2,
+          "item_name": "Shorts branco",
+          "category": "shorts",
+          "color": "Branco",
+          "size": "GG",
+          "image_path": "/images/clothes/1747135837098.webp",
+          "added_date": "2025-05-13 11:30:37"
         }
       ],
       "posts": [
